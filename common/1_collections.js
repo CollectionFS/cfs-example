@@ -29,6 +29,24 @@ Collections.Docs.attachSchema(new SimpleSchema({
     type: String
   },
   fileId: {
+    type: String,
+    autoform: {
+      type: "cfs-file",
+      collection: "files"
+    }
+  }
+}));
+
+Collections.Docs2 = new Mongo.Collection("docs2");
+Collections.Docs2.attachSchema(new SimpleSchema({
+  name: {
     type: String
+  },
+  fileId: {
+    type: [String],
+    autoform: {
+      type: "cfs-files",
+      collection: "files"
+    }
   }
 }));

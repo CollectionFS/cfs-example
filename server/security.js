@@ -40,3 +40,15 @@ Collections.Docs.deny({
   update: falseFunc,
   remove: falseFunc
 });
+
+Collections.Docs2.allow({
+  insert: trueFunc,
+  update: trueFunc,
+  remove: trueFunc
+});
+
+Collections.Docs2.deny({
+  insert: falseFunc,
+  update: falseFunc,
+  remove: falseFunc
+});

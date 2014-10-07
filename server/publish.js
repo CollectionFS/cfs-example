@@ -9,3 +9,7 @@ Meteor.publish("files", function() {
 Meteor.publish("docs", function() {
   return Collections.Docs.find();
 });
+
+Meteor.publish("docs2", function() {
+  return Collections.Docs2.find();
+});
