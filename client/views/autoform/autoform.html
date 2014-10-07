@@ -1,0 +1,7 @@
+<template name="autoformExample">
+  {{#autoForm id="insertForm" type="insert" collection=Collections.Docs}}
+  {{> afQuickField name="name"}}
+  {{> afQuickField name="fileId" type="cfs-file" collection="files"}}
+  <button type="submit" class="btn btn-primary">Submit</button>
+  {{/autoForm}}
+</template>

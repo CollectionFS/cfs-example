@@ -1,0 +1,36 @@
+<template name="images">
+  {{> upDown}}
+
+  <h2>Image Files</h2>
+  <div class="well imageDropArea">
+    <input type="file" multiple class="images">
+  </div>
+  <div class="imageArea clearfix">
+    {{#each uploadedImages}}
+    {{> uploadedImage}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="uploadedImage">
+  <div class="media well pull-left">
+    <a href="{{this.url}}" target="_blank" class="pull-left"><img src="{{this.url store='thumbs'}}" alt="" class="img-rounded"></a>
+    <div class="media-body">
+      <h4 class="media-heading">{{this.name}}</h4>
+      <p><em>Original size: {{this.formattedSize}}<br>Thumbnail size: {{this.formattedSize store="thumbs"}}<br>Type: {{this.type store="images"}}</em></p>
+      {{#if this.isUploaded}}
+      {{#if this.hasStored 'images'}}
+      {{#with this.url download=true}}
+      <a href="{{this}}" class="btn btn-default btn-xs" role="button">Download</a>
+      {{/with}}
+      {{else}}
+      Storing...
+      {{/if}}
+      {{else}}
+      Uploading: {{this.uploadProgress}}%
+      <p>{{> FS.UploadProgressBar}}</p>
+      {{/if}}
+      {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+    </div>
+  </div>
+</template>

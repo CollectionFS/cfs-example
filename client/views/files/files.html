@@ -1,0 +1,25 @@
+<template name="files">
+  {{> upDown}}
+
+  <h1>Files</h1>
+  <div class="well">
+    <input type="file" multiple class="any">
+  </div>
+  <div class="fileArea">
+  {{#each uploadedFiles}}
+  {{> uploadedFile}}
+  {{/each}}
+  </div>
+</template>
+
+<template name="uploadedFile">
+  <h4>{{#with this.url}}<a href="{{this}}" target="_blank">{{../name}}</a>{{else}}{{this.name}}{{/with}} ({{this.size}} bytes)</h4>
+  {{#if this.isUploaded}}
+  {{#with this.url download=true}}
+  <a href="{{this}}" class="btn btn-default btn-xs" role="button">Download</a>
+  {{/with}}
+  {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+  {{else}}
+  <p>{{> FS.UploadProgressBar semantic=true}} Uploading...</p>
+  {{/if}}
+</template>

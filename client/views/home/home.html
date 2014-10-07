@@ -1,0 +1,12 @@
+<template name="home">
+  {{> loginButtons}}
+</template>
+
+<template name="upDown">
+  <div>
+    <button type="button" class="btn btn-xs resumeUploads">Resume All Uploads</button>
+    <button type="button" class="btn btn-xs pauseUploads">Pause All Uploads</button>
+    <button type="button" class="btn btn-xs cancelUploads">Cancel All Uploads</button>
+  </div>
+  {{> FS.UploadProgressBar}}
+</template>
