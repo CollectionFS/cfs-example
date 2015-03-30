@@ -1,3 +1,7 @@
+Template.files.created = function () {
+  this.filename = new ReactiveVar('');
+};
+
 // Can't call getHandler until startup so that Collections object is available
 Meteor.startup(function () {
 
@@ -15,11 +19,31 @@ Meteor.startup(function () {
           console.log("Inserted", fileObj.name());
         }
       }
-    })
+    }),
+    'keyup .filename': function () {
+      var ins = Template.instance();
+      if (ins) {
+        ins.filename.set($('.filename').val());
+      }
+    }
   });
 
 });
 
-Template.files.uploadedFiles = function() {
-  return Collections.Files.find();
-};
+Template.files.helpers({
+  uploadedFiles: function() {
+    return Collections.Files.find();
+  },
+  curl: function () {
+    var ins = Template.instance(), filename = '';
+    if (ins) {
+      filename = ins.filename.get();
+    }
+
+    if (filename.length === 0) {
+      filename = 'example.txt';
+    }
+
+    return 'curl "' + Meteor.absoluteUrl('cfs/files/' + Collections.Files.name) + '?filename=' + filename + '" -H "Content-Type: text/plain" -T "' + filename + '"';
+  }
+});

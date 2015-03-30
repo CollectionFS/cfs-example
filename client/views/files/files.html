@@ -5,6 +5,12 @@
   <div class="well">
     <input type="file" multiple class="any">
   </div>
+  <div class="well">
+    <p>Or enter the file name here and then copy, paste, and execute the CURL command below in your terminal window, in the directory that contains the file.</p>
+    <input type="text" class="filename">
+    <p style="margin-top: 20px"><code>{{curl}}</code></p>
+  </div>
+
   <div class="fileArea">
   {{#each uploadedFiles}}
   {{> uploadedFile}}
