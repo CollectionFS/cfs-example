@@ -44,6 +44,14 @@ Template.files.helpers({
       filename = 'example.txt';
     }
 
-    return 'curl "' + Meteor.absoluteUrl('cfs/files/' + Collections.Files.name) + '?filename=' + filename + '" -H "Content-Type: text/plain" -T "' + filename + '"';
+    var authObject = {
+      authToken: Accounts._storedLoginToken() || '',
+    };
+
+    // Set the authToken
+    var authString = JSON.stringify(authObject);
+    var authToken = FS.Utility.btoa(authString);
+
+    return 'curl "' + Meteor.absoluteUrl('cfs/files/' + Collections.Files.name) + '?filename=' + filename + '&token=' + authToken + '" -H "Content-Type: text/plain" -T "' + filename + '"';
   }
 });
